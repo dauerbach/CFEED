@@ -13,6 +13,7 @@
 		5524714E1AF5B0E9008F1C24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5524714C1AF5B0E9008F1C24 /* Main.storyboard */; };
 		552471501AF5B0E9008F1C24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5524714F1AF5B0E9008F1C24 /* Images.xcassets */; };
 		552471531AF5B0E9008F1C24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552471511AF5B0E9008F1C24 /* LaunchScreen.xib */; };
+		55569FC41AF6C0AD005BB21A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 55569FC31AF6C0AD005BB21A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5524714D1AF5B0E9008F1C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5524714F1AF5B0E9008F1C24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		552471521AF5B0E9008F1C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		55569FC31AF6C0AD005BB21A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5733CD32697CAFA3035F310B /* Pods-C-FEED.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C-FEED.release.xcconfig"; path = "Pods/Target Support Files/Pods-C-FEED/Pods-C-FEED.release.xcconfig"; sourceTree = "<group>"; };
 		FE63AF0120EA562222216B1C /* Pods_C_FEED.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C_FEED.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 		552471461AF5B0E9008F1C24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55569FC31AF6C0AD005BB21A /* README.md */,
 				552471471AF5B0E9008F1C24 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -217,6 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55569FC41AF6C0AD005BB21A /* README.md in Sources */,
 				5524714B1AF5B0E9008F1C24 /* ViewController.swift in Sources */,
 				552471491AF5B0E9008F1C24 /* AppDelegate.swift in Sources */,
 			);
