@@ -13,7 +13,14 @@
 		5524714E1AF5B0E9008F1C24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5524714C1AF5B0E9008F1C24 /* Main.storyboard */; };
 		552471501AF5B0E9008F1C24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5524714F1AF5B0E9008F1C24 /* Images.xcassets */; };
 		552471531AF5B0E9008F1C24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552471511AF5B0E9008F1C24 /* LaunchScreen.xib */; };
-		55569FC41AF6C0AD005BB21A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 55569FC31AF6C0AD005BB21A /* README.md */; };
+		55569FC81AF6C30E005BB21A /* SACFFavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FC71AF6C30E005BB21A /* SACFFavoritesVC.swift */; };
+		55569FCB1AF6C351005BB21A /* SACFMainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FCA1AF6C351005BB21A /* SACFMainTabBarVC.swift */; };
+		55569FCD1AF6C36D005BB21A /* SACFSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FCC1AF6C36D005BB21A /* SACFSearchVC.swift */; };
+		55569FCF1AF6C757005BB21A /* SACFUserDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FCE1AF6C757005BB21A /* SACFUserDataPersistence.swift */; };
+		55569FD11AF6C76E005BB21A /* SACFRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD01AF6C76E005BB21A /* SACFRequestManager.swift */; };
+		55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD21AF6C796005BB21A /* SACFPolitician.swift */; };
+		55569FD71AF6D179005BB21A /* SACFRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD61AF6D179005BB21A /* SACFRole.swift */; };
+		55569FD91AF6E98C005BB21A /* PoliticianTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +32,14 @@
 		5524714D1AF5B0E9008F1C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5524714F1AF5B0E9008F1C24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		552471521AF5B0E9008F1C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		55569FC31AF6C0AD005BB21A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		55569FC71AF6C30E005BB21A /* SACFFavoritesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFFavoritesVC.swift; sourceTree = "<group>"; };
+		55569FCA1AF6C351005BB21A /* SACFMainTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFMainTabBarVC.swift; sourceTree = "<group>"; };
+		55569FCC1AF6C36D005BB21A /* SACFSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFSearchVC.swift; sourceTree = "<group>"; };
+		55569FCE1AF6C757005BB21A /* SACFUserDataPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFUserDataPersistence.swift; sourceTree = "<group>"; };
+		55569FD01AF6C76E005BB21A /* SACFRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFRequestManager.swift; sourceTree = "<group>"; };
+		55569FD21AF6C796005BB21A /* SACFPolitician.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFPolitician.swift; sourceTree = "<group>"; };
+		55569FD61AF6D179005BB21A /* SACFRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFRole.swift; sourceTree = "<group>"; };
+		55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianTVC.swift; sourceTree = "<group>"; };
 		5733CD32697CAFA3035F310B /* Pods-C-FEED.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C-FEED.release.xcconfig"; path = "Pods/Target Support Files/Pods-C-FEED/Pods-C-FEED.release.xcconfig"; sourceTree = "<group>"; };
 		FE63AF0120EA562222216B1C /* Pods_C_FEED.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C_FEED.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -72,10 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				552471481AF5B0E9008F1C24 /* AppDelegate.swift */,
-				5524714A1AF5B0E9008F1C24 /* ViewController.swift */,
 				5524714C1AF5B0E9008F1C24 /* Main.storyboard */,
+				55569FD51AF6C7A9005BB21A /* Utilities */,
+				55569FD41AF6C79D005BB21A /* Models */,
 				5524714F1AF5B0E9008F1C24 /* Images.xcassets */,
 				552471511AF5B0E9008F1C24 /* LaunchScreen.xib */,
+				55569FC91AF6C319005BB21A /* ViewControllers */,
 				552471461AF5B0E9008F1C24 /* Supporting Files */,
 			);
 			path = "C-FEED";
@@ -84,10 +100,39 @@
 		552471461AF5B0E9008F1C24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				55569FC31AF6C0AD005BB21A /* README.md */,
 				552471471AF5B0E9008F1C24 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		55569FC91AF6C319005BB21A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5524714A1AF5B0E9008F1C24 /* ViewController.swift */,
+				55569FCA1AF6C351005BB21A /* SACFMainTabBarVC.swift */,
+				55569FCC1AF6C36D005BB21A /* SACFSearchVC.swift */,
+				55569FC71AF6C30E005BB21A /* SACFFavoritesVC.swift */,
+				55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		55569FD41AF6C79D005BB21A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				55569FD21AF6C796005BB21A /* SACFPolitician.swift */,
+				55569FD61AF6D179005BB21A /* SACFRole.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		55569FD51AF6C7A9005BB21A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				55569FCE1AF6C757005BB21A /* SACFUserDataPersistence.swift */,
+				55569FD01AF6C76E005BB21A /* SACFRequestManager.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		DABD8F2F8D13AD7C9E3E8E72 /* Pods */ = {
@@ -220,9 +265,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55569FC41AF6C0AD005BB21A /* README.md in Sources */,
+				55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */,
+				55569FCD1AF6C36D005BB21A /* SACFSearchVC.swift in Sources */,
+				55569FC81AF6C30E005BB21A /* SACFFavoritesVC.swift in Sources */,
+				55569FD91AF6E98C005BB21A /* PoliticianTVC.swift in Sources */,
+				55569FD11AF6C76E005BB21A /* SACFRequestManager.swift in Sources */,
 				5524714B1AF5B0E9008F1C24 /* ViewController.swift in Sources */,
+				55569FD71AF6D179005BB21A /* SACFRole.swift in Sources */,
+				55569FCF1AF6C757005BB21A /* SACFUserDataPersistence.swift in Sources */,
 				552471491AF5B0E9008F1C24 /* AppDelegate.swift in Sources */,
+				55569FCB1AF6C351005BB21A /* SACFMainTabBarVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +389,7 @@
 				INFOPLIST_FILE = "C-FEED/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -348,6 +401,7 @@
 				INFOPLIST_FILE = "C-FEED/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
