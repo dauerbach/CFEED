@@ -12,13 +12,15 @@ class SACFPoliticianDetailsVC: UIViewController {
 
    @IBOutlet weak var navItem: UINavigationItem!
    
+   var politician : SACFPolitician?
+   
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
       
-      navItem.title = (navigationController as! SACFPoliticianDetailsNC).politician?.name
+      navItem.title = self.politician?.name!
       
     }
 

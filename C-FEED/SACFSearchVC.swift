@@ -94,9 +94,11 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       }
    }
    
+   
    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       return 54.0
    }
+   
    
    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
@@ -104,34 +106,27 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
          
          SACFRequestManager.requestPoliticianDetails(pol.id!, completion: { (request, response, jsonData, error) -> Void in
             
+            // create politician model from json
             var polDetails : SACFPolitician = Mapper<SACFPolitician>().map(jsonData)!
             
+            //update congress list with fresh politicians details.
             self.curCongress?.members?[indexPath.row] = polDetails
             
-            self.performSegueWithIdentifier("seg_politicianDetails", sender: self.curCongress?.members?[indexPath.row])
+            // instantiate "details" vc and push into nav stack
+            if let destVC = self.sb?.instantiateViewControllerWithIdentifier("vc_politicianDetails") as? SACFPoliticianDetailsVC {
+               
+               // set politician in for "details" stack
+               destVC.politician = self.curCongress?.members?[indexPath.row]
+               
+               self.navigationController?.pushViewController(destVC, animated: true)
+               
+            }
             
          })
       }
-      
-}
-   
-   func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-      
-      if let pol = self.curCongress?.members?[indexPath.row] {
-         
-         SACFRequestManager.requestPoliticianDetails(pol.id!, completion: { (request, response, jsonData, error) -> Void in
-            
-            var polDetails : SACFPolitician = Mapper<SACFPolitician>().map(jsonData)!
-            
-            self.curCongress?.members?[indexPath.row] = polDetails
-            
-            self.performSegueWithIdentifier("seg_politicianDetails", sender: self.curCongress?.members?[indexPath.row])
-            
-         })
-      }
-      
       
    }
+   
    
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
@@ -142,9 +137,6 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
          if let pcell = (tableView.dequeueReusableCellWithIdentifier("rid_politician") as? PoliticianTVC) {
             
             pcell.nameLBL.text      = self.curCongress?.members?[indexPath.row].name!
-               
-//            pcell.descriptionLBL.text  = self.curCongress?.members?[indexPath.row].curRole?.description!
-            
             pcell.partyLBL.text     = self.curCongress?.members?[indexPath.row].curRole?.party!
             
             return pcell
@@ -155,14 +147,6 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       }
       return cell!
 
-   }
-   
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-      let dest = segue.destinationViewController as! SACFPoliticianDetailsNC
-      
-      dest.politician = (sender as! SACFPolitician)
-      
    }
    
 }
