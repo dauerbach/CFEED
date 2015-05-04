@@ -3,7 +3,7 @@
 //  C-FEED
 //
 //  Created by Dan Auerbach on 5/3/15.
-//  Copyright (c) 2015 SoupyApps. All rights reserved.
+//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
 //
 
 import Foundation
@@ -15,25 +15,7 @@ enum PoliticalParty : String {
    case Other = "OTHER"
 }
 
-class Congress : Mappable {
-   
-   var current : Bool = true
-   var members : [Role]?
-   
-   required init?(_ map: Map) {
-      mapping(map)
-   }
-   
-   // Mappable
-   func mapping(map: Map) {
-      
-      members <- map["objects"]
-      
-   }
-}
-
-
-class Politician : Mappable {
+class SACFPolitician : Mappable {
    
    var id : Int?
    var bioguideid : String?
@@ -47,6 +29,8 @@ class Politician : Mappable {
    var govtrackLink : String?
    var twitterid : String?
    var youtubeid : String?
+   
+   var curRole : SACFRole?
    
    
    required init?(_ map: Map) {
@@ -69,9 +53,23 @@ class Politician : Mappable {
       twitterid       <- map["twitterid"]
       youtubeid       <- map["youtubeid"]
       
-
+      // since JSON returns with "person" as child of "role", we are flipping so we can
+//      curRole         = SACFRole(map)
+      
    }
 
+   func fullName() -> String {
+      // return the full name with Title from current Role, if any
+      
+      var fn = ""
+      if let title = self.curRole?.title {
+         fn += title + " "
+      }
+      fn += self.firstname! + " " + self.lastname!
+      
+      return fn
+      
+   }
    
    
 }

@@ -3,23 +3,21 @@
 //  C-FEED
 //
 //  Created by Dan Auerbach on 5/3/15.
-//  Copyright (c) 2015 SoupyApps. All rights reserved.
+//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-class Role : Mappable {
+class SACFRole : Mappable {
    
    var caucus : String?
    var current : Bool?
 
-   var district : String?
+   var district : Int?
    var description : String?
 
    var party : String?
-   
-   var politician : Politician?
    
    var officePhone : String?
    var roleType : String?
@@ -40,10 +38,8 @@ class Role : Mappable {
       
       description <- map["description"]
       district    <- map["district"]
-
-      party       <- map["party"]
       
-      politician  <- map["person"]
+      party       <- map["party"]
       
       officePhone <- map["phone"]
       roleType    <- map["role_type"]
@@ -55,13 +51,28 @@ class Role : Mappable {
    
    func getDistrict() -> String {
       
+      var distStr : String = ""
+      
+      // see if district-specific info exists
       if let dist = self.district {
-         return "\(self.state)-\(self.district)"
+
+         if dist == 0 {
+            // at large Rep (e.g. AK, RI...)
+            distStr = "\(self.state!) (A/L)"
+            
+         } else {
+            
+            distStr = "\(self.state!)-\(dist)"
+         }
+         
       } else {
-         return self.state!
+         // no district info, just return state info
+         
+         distStr = self.state!
+         
       }
+      
+      return distStr
    }
-   
-   
    
 }

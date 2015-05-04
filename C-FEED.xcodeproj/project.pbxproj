@@ -21,6 +21,9 @@
 		55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD21AF6C796005BB21A /* SACFPolitician.swift */; };
 		55569FD71AF6D179005BB21A /* SACFRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD61AF6D179005BB21A /* SACFRole.swift */; };
 		55569FD91AF6E98C005BB21A /* PoliticianTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */; };
+		557044681AF736F3002D4C1D /* SACFCongress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557044671AF736F3002D4C1D /* SACFCongress.swift */; };
+		5570446A1AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */; };
+		5570446C1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		55569FD21AF6C796005BB21A /* SACFPolitician.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFPolitician.swift; sourceTree = "<group>"; };
 		55569FD61AF6D179005BB21A /* SACFRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFRole.swift; sourceTree = "<group>"; };
 		55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianTVC.swift; sourceTree = "<group>"; };
+		557044671AF736F3002D4C1D /* SACFCongress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFCongress.swift; sourceTree = "<group>"; };
+		557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SACFPoliticianDetailsNC.swift; path = ViewControllers/SACFPoliticianDetailsNC.swift; sourceTree = "<group>"; };
+		5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SACFPoliticianDetailsVC.swift; path = ViewControllers/SACFPoliticianDetailsVC.swift; sourceTree = "<group>"; };
 		5733CD32697CAFA3035F310B /* Pods-C-FEED.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C-FEED.release.xcconfig"; path = "Pods/Target Support Files/Pods-C-FEED/Pods-C-FEED.release.xcconfig"; sourceTree = "<group>"; };
 		FE63AF0120EA562222216B1C /* Pods_C_FEED.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C_FEED.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +119,8 @@
 				55569FCC1AF6C36D005BB21A /* SACFSearchVC.swift */,
 				55569FC71AF6C30E005BB21A /* SACFFavoritesVC.swift */,
 				55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */,
+				557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */,
+				5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -120,6 +128,7 @@
 		55569FD41AF6C79D005BB21A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				557044671AF736F3002D4C1D /* SACFCongress.swift */,
 				55569FD21AF6C796005BB21A /* SACFPolitician.swift */,
 				55569FD61AF6D179005BB21A /* SACFRole.swift */,
 			);
@@ -265,6 +274,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5570446A1AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift in Sources */,
+				5570446C1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift in Sources */,
 				55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */,
 				55569FCD1AF6C36D005BB21A /* SACFSearchVC.swift in Sources */,
 				55569FC81AF6C30E005BB21A /* SACFFavoritesVC.swift in Sources */,
@@ -275,6 +286,7 @@
 				55569FCF1AF6C757005BB21A /* SACFUserDataPersistence.swift in Sources */,
 				552471491AF5B0E9008F1C24 /* AppDelegate.swift in Sources */,
 				55569FCB1AF6C351005BB21A /* SACFMainTabBarVC.swift in Sources */,
+				557044681AF736F3002D4C1D /* SACFCongress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

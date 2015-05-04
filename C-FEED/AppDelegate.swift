@@ -3,7 +3,7 @@
 //  C-FEED
 //
 //  Created by Dan Auerbach on 5/2/15.
-//  Copyright (c) 2015 SoupyApps. All rights reserved.
+//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
 //
 
 import UIKit

@@ -1,14 +1,16 @@
 //
-//  SACFMainTabBarVC.swift
+//  SACFPoliticianDetailsNC.swift
 //  C-FEED
 //
-//  Created by Dan Auerbach on 5/3/15.
-//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
+//  Created by Dan Auerbach on 5/4/15.
+//  Copyright (c) 2015 SoupyApps. All rights reserved.
 //
 
 import UIKit
 
-class SACFMainTabBarVC: UITabBarController {
+class SACFPoliticianDetailsNC: UINavigationController {
+   
+   var politician : SACFPolitician?
 
     override func viewDidLoad() {
         super.viewDidLoad()

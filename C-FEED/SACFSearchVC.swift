@@ -3,7 +3,7 @@
 //  C-FEED
 //
 //  Created by Dan Auerbach on 5/3/15.
-//  Copyright (c) 2015 SoupyApps. All rights reserved.
+//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
 //
 
 import UIKit
@@ -16,7 +16,9 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
    
    @IBOutlet weak var politicianList: UITableView!
    
-   private var curCongress : Congress?
+   private var curCongress : SACFCongress?
+   
+   private var sb : UIStoryboard?
    
    
    override func viewDidLoad() {
@@ -24,16 +26,39 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       
       // Do any additional setup after loading the view.
       
+      self.sb = UIStoryboard(name: "Main", bundle: nil)
+      
       self.politicianList.dataSource = self
       self.politicianList.delegate = self
       
       // lets load current congress...
       
-      Alamofire.request(.GET, "https://www.govtrack.us/api/v2/role?current=true", parameters: ["limit": "600"])
-               .responseString { (request, response, jsonString, error) in
-            
-                  self.curCongress = Mapper<Congress>().map(jsonString!)
+      SACFRequestManager.requestCurrentCongress { (request, response, jsonString, error) in
+
+                  self.curCongress = SACFCongress()
                   
+                  let json = JSON(jsonString!)
+                  let objs = json["objects"]
+                  let cnt = objs.count
+                  
+                  for (var ndx = 0; ndx < cnt; ndx++) {
+                     
+                     var role = Mapper<SACFRole>().map(objs[ndx].rawString()!)
+                     var pol =  Mapper<SACFPolitician>().map(objs[ndx]["person"].rawString()!)
+                     
+                     pol?.curRole = role
+
+                     // filter out Pres and VP from GovTrack API data
+                     if let roletype = pol?.curRole?.roleType {
+                        if (roletype != "president") && (roletype != "vicepresident") {
+                           self.curCongress?.addPolitician(pol!)
+                        }
+                     }
+                     
+                     
+                  }
+                  
+                  self.curCongress?.sortCongress(.CurStateDistName)
                   self.politicianList.reloadData()
             
                }
@@ -69,6 +94,45 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       }
    }
    
+   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+      return 54.0
+   }
+   
+   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+      if let pol = self.curCongress?.members?[indexPath.row] {
+         
+         SACFRequestManager.requestPoliticianDetails(pol.id!, completion: { (request, response, jsonData, error) -> Void in
+            
+            var polDetails : SACFPolitician = Mapper<SACFPolitician>().map(jsonData)!
+            
+            self.curCongress?.members?[indexPath.row] = polDetails
+            
+            self.performSegueWithIdentifier("seg_politicianDetails", sender: self.curCongress?.members?[indexPath.row])
+            
+         })
+      }
+      
+}
+   
+   func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+      
+      if let pol = self.curCongress?.members?[indexPath.row] {
+         
+         SACFRequestManager.requestPoliticianDetails(pol.id!, completion: { (request, response, jsonData, error) -> Void in
+            
+            var polDetails : SACFPolitician = Mapper<SACFPolitician>().map(jsonData)!
+            
+            self.curCongress?.members?[indexPath.row] = polDetails
+            
+            self.performSegueWithIdentifier("seg_politicianDetails", sender: self.curCongress?.members?[indexPath.row])
+            
+         })
+      }
+      
+      
+   }
+   
    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
       var cell : UITableViewCell?
@@ -77,9 +141,11 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
          
          if let pcell = (tableView.dequeueReusableCellWithIdentifier("rid_politician") as? PoliticianTVC) {
             
-            pcell.nameLBL.text = self.curCongress?.members?[indexPath.row].politician?.name!
-            pcell.districtLBL.text = self.curCongress?.members?[indexPath.row].getDistrict()
-            pcell.partyLBL.text = self.curCongress?.members?[indexPath.row].party!
+            pcell.nameLBL.text      = self.curCongress?.members?[indexPath.row].name!
+               
+//            pcell.descriptionLBL.text  = self.curCongress?.members?[indexPath.row].curRole?.description!
+            
+            pcell.partyLBL.text     = self.curCongress?.members?[indexPath.row].curRole?.party!
             
             return pcell
 
@@ -89,6 +155,14 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       }
       return cell!
 
+   }
+   
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+      let dest = segue.destinationViewController as! SACFPoliticianDetailsNC
+      
+      dest.politician = (sender as! SACFPolitician)
+      
    }
    
 }

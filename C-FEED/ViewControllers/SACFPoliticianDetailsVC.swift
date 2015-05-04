@@ -1,19 +1,25 @@
 //
-//  SACFMainTabBarVC.swift
+//  SACFPoliticianDetailsVC.swift
 //  C-FEED
 //
-//  Created by Dan Auerbach on 5/3/15.
-//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
+//  Created by Dan Auerbach on 5/4/15.
+//  Copyright (c) 2015 SoupyApps. All rights reserved.
 //
 
 import UIKit
 
-class SACFMainTabBarVC: UITabBarController {
+class SACFPoliticianDetailsVC: UIViewController {
 
+   @IBOutlet weak var navItem: UINavigationItem!
+   
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+      
+      navItem.title = (navigationController as! SACFPoliticianDetailsNC).politician?.name
+      
     }
 
     override func didReceiveMemoryWarning() {

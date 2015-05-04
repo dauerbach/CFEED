@@ -3,7 +3,7 @@
 //  C-FEED
 //
 //  Created by Dan Auerbach on 5/3/15.
-//  Copyright (c) 2015 SoupyApps. All rights reserved.
+//  Copyright (c) 2015 Datatask Solutions. All rights reserved.
 //
 
 import UIKit
@@ -12,8 +12,7 @@ class PoliticianTVC: UITableViewCell {
    
    @IBOutlet weak var partyLBL: UILabel!
    @IBOutlet weak var nameLBL: UILabel!
-   @IBOutlet weak var districtLBL: UILabel!
-   @IBOutlet weak var titleLBL: UILabel!
+   @IBOutlet weak var descriptionLBL: UILabel!
    
 //   var party : String?
 //   var title : String?
