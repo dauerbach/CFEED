@@ -7,13 +7,30 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class SACFMainTabBarVC: UITabBarController {
+   
+   var hud = MBProgressHUD()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+      
+      // lets load up a congress
+      self.hud.minShowTime = 1.0
+      self.hud.mode = MBProgressHUDMode.Indeterminate
+      self.hud.show(true)
+      self.hud.labelText = "Loading Congress Data..."
+      
+      SACFCongressManager.sharedInstance.loadCongressWithCompletion { (success) -> Void in
+
+         self.hud.hide(true, afterDelay: 1.0)
+
+      }
+      
     }
 
     override func didReceiveMemoryWarning() {

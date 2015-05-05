@@ -20,7 +20,9 @@ class SACFPoliticianDetailsVC: UIViewController {
 
         // Do any additional setup after loading the view.
       
-      navItem.title = self.politician?.name!
+      self.politician = SACFCongressManager.sharedInstance.selectedPolitician ?? nil
+      
+      navItem.title = self.politician?.lastname!
       
     }
 

@@ -12,13 +12,12 @@ import ObjectMapper
 import SwiftyJSON
 
 
-class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
    
    @IBOutlet weak var politicianList: UITableView!
    
-   private var curCongress : SACFCongress?
-   
    private var sb : UIStoryboard?
+   private var isFiltered : Bool = false
    
    
    override func viewDidLoad() {
@@ -31,37 +30,6 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       self.politicianList.dataSource = self
       self.politicianList.delegate = self
       
-      // lets load current congress...
-      
-      SACFRequestManager.requestCurrentCongress { (request, response, jsonString, error) in
-
-                  self.curCongress = SACFCongress()
-                  
-                  let json = JSON(jsonString!)
-                  let objs = json["objects"]
-                  let cnt = objs.count
-                  
-                  for (var ndx = 0; ndx < cnt; ndx++) {
-                     
-                     var role = Mapper<SACFRole>().map(objs[ndx].rawString()!)
-                     var pol =  Mapper<SACFPolitician>().map(objs[ndx]["person"].rawString()!)
-                     
-                     pol?.curRole = role
-
-                     // filter out Pres and VP from GovTrack API data
-                     if let roletype = pol?.curRole?.roleType {
-                        if (roletype != "president") && (roletype != "vicepresident") {
-                           self.curCongress?.addPolitician(pol!)
-                        }
-                     }
-                     
-                     
-                  }
-                  
-                  self.curCongress?.sortCongress(.CurStateDistName)
-                  self.politicianList.reloadData()
-            
-               }
    }
    
    override func didReceiveMemoryWarning() {
@@ -72,7 +40,8 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
       
       if (tableView == politicianList) {
-         return 1
+//         return 1
+         return count(SACFCongressManager.sharedInstance.membersGrouped!)
       } else {
          return 0
       }
@@ -83,15 +52,16 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 
       if (tableView == politicianList) {
 
-         if let cnt = self.curCongress?.members?.count {
-            return cnt
-         } else {
-            return 0
-         }
+         return (SACFCongressManager.sharedInstance.membersGrouped?[section]?.count ?? 0)
 
       } else {
+         
          return 0
       }
+   }
+   
+   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+      return SACFCongressManager.sharedInstance.membersGrouped?[section]![0].curRole!.state
    }
    
    
@@ -102,26 +72,17 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
    
    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-      if let pol = self.curCongress?.members?[indexPath.row] {
+      if let pol = SACFCongressManager.sharedInstance.membersGrouped?[indexPath.section]![indexPath.row] {
          
-         SACFRequestManager.requestPoliticianDetails(pol.id!, completion: { (request, response, jsonData, error) -> Void in
-            
-            // create politician model from json
-            var polDetails : SACFPolitician = Mapper<SACFPolitician>().map(jsonData)!
-            
-            //update congress list with fresh politicians details.
-            self.curCongress?.members?[indexPath.row] = polDetails
+         SACFCongressManager.sharedInstance.loadPoliticianWithCompletion(politician: pol, completion: { (success) in
             
             // instantiate "details" vc and push into nav stack
             if let destVC = self.sb?.instantiateViewControllerWithIdentifier("vc_politicianDetails") as? SACFPoliticianDetailsVC {
                
-               // set politician in for "details" stack
-               destVC.politician = self.curCongress?.members?[indexPath.row]
-               
                self.navigationController?.pushViewController(destVC, animated: true)
                
             }
-            
+
          })
       }
       
@@ -136,9 +97,8 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
          
          if let pcell = (tableView.dequeueReusableCellWithIdentifier("rid_politician") as? PoliticianTVC) {
             
-            pcell.nameLBL.text      = self.curCongress?.members?[indexPath.row].name!
-            pcell.partyLBL.text     = self.curCongress?.members?[indexPath.row].curRole?.party!
-            
+            pcell.nameLBL.text      = SACFCongressManager.sharedInstance.membersGrouped?[indexPath.section]![indexPath.row].name!
+            pcell.partyLBL.text      = SACFCongressManager.sharedInstance.membersGrouped?[indexPath.section]![indexPath.row].curRole?.party!
             return pcell
 
          }

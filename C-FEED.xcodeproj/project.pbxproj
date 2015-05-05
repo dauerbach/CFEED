@@ -24,6 +24,7 @@
 		557044681AF736F3002D4C1D /* SACFCongress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557044671AF736F3002D4C1D /* SACFCongress.swift */; };
 		5570446A1AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */; };
 		5570446C1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */; };
+		55EBE1DC1AF8618C00D33B4B /* SACFCongressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EBE1DB1AF8618C00D33B4B /* SACFCongressManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		557044671AF736F3002D4C1D /* SACFCongress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFCongress.swift; sourceTree = "<group>"; };
 		557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SACFPoliticianDetailsNC.swift; path = ViewControllers/SACFPoliticianDetailsNC.swift; sourceTree = "<group>"; };
 		5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SACFPoliticianDetailsVC.swift; path = ViewControllers/SACFPoliticianDetailsVC.swift; sourceTree = "<group>"; };
+		55EBE1DB1AF8618C00D33B4B /* SACFCongressManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFCongressManager.swift; sourceTree = "<group>"; };
 		5733CD32697CAFA3035F310B /* Pods-C-FEED.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C-FEED.release.xcconfig"; path = "Pods/Target Support Files/Pods-C-FEED/Pods-C-FEED.release.xcconfig"; sourceTree = "<group>"; };
 		FE63AF0120EA562222216B1C /* Pods_C_FEED.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C_FEED.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,10 +97,10 @@
 				5524714C1AF5B0E9008F1C24 /* Main.storyboard */,
 				55569FD51AF6C7A9005BB21A /* Utilities */,
 				55569FD41AF6C79D005BB21A /* Models */,
-				5524714F1AF5B0E9008F1C24 /* Images.xcassets */,
-				552471511AF5B0E9008F1C24 /* LaunchScreen.xib */,
 				55569FC91AF6C319005BB21A /* ViewControllers */,
 				552471461AF5B0E9008F1C24 /* Supporting Files */,
+				5524714F1AF5B0E9008F1C24 /* Images.xcassets */,
+				552471511AF5B0E9008F1C24 /* LaunchScreen.xib */,
 			);
 			path = "C-FEED";
 			sourceTree = "<group>";
@@ -128,6 +130,7 @@
 		55569FD41AF6C79D005BB21A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				55EBE1DB1AF8618C00D33B4B /* SACFCongressManager.swift */,
 				557044671AF736F3002D4C1D /* SACFCongress.swift */,
 				55569FD21AF6C796005BB21A /* SACFPolitician.swift */,
 				55569FD61AF6D179005BB21A /* SACFRole.swift */,
@@ -278,6 +281,7 @@
 				5570446C1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift in Sources */,
 				55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */,
 				55569FCD1AF6C36D005BB21A /* SACFSearchVC.swift in Sources */,
+				55EBE1DC1AF8618C00D33B4B /* SACFCongressManager.swift in Sources */,
 				55569FC81AF6C30E005BB21A /* SACFFavoritesVC.swift in Sources */,
 				55569FD91AF6E98C005BB21A /* PoliticianTVC.swift in Sources */,
 				55569FD11AF6C76E005BB21A /* SACFRequestManager.swift in Sources */,

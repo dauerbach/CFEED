@@ -29,9 +29,11 @@ class SACFPolitician : Mappable {
    var govtrackLink : String?
    var twitterid : String?
    var youtubeid : String?
-   
+
+   // not mapped properties
    var curRole : SACFRole?
-   
+   var detailedRecord = false
+
    
    required init?(_ map: Map) {
       mapping(map)
@@ -52,9 +54,6 @@ class SACFPolitician : Mappable {
       govtrackLink    <- map["link"]
       twitterid       <- map["twitterid"]
       youtubeid       <- map["youtubeid"]
-      
-      // since JSON returns with "person" as child of "role", we are flipping so we can
-//      curRole         = SACFRole(map)
       
    }
 

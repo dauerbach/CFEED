@@ -13,7 +13,7 @@ target 'C-FEED' do
    
    pod 'MBProgressHUD', '~> 0.9.1'
    
-   pod 'Dollar', '~> 3.0.0'
+   pod 'Dollar', '~3.0.0'
 
 end
 

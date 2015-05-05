@@ -18,6 +18,18 @@
 #define COCOAPODS_VERSION_MINOR_AlamofireObjectMapper 1
 #define COCOAPODS_VERSION_PATCH_AlamofireObjectMapper 0
 
+// Dollar
+#define COCOAPODS_POD_AVAILABLE_Dollar
+#define COCOAPODS_VERSION_MAJOR_Dollar 3
+#define COCOAPODS_VERSION_MINOR_Dollar 0
+#define COCOAPODS_VERSION_PATCH_Dollar 0
+
+// MBProgressHUD
+#define COCOAPODS_POD_AVAILABLE_MBProgressHUD
+#define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
+#define COCOAPODS_VERSION_PATCH_MBProgressHUD 1
+
 // ObjectMapper
 #define COCOAPODS_POD_AVAILABLE_ObjectMapper
 #define COCOAPODS_VERSION_MAJOR_ObjectMapper 0
