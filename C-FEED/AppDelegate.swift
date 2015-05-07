@@ -10,6 +10,22 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+   
+   static let twitter_consumer_key = "mJxbqoFKfcrMpEwznloWRxwbE"
+   static let twitter_consumer_secret = "r0MQo0CEI7jRRn08RC9CgnjnyMrywGCAG0Ab3Dcny1RbUGXIqj"
+
+   static let twitter_consumer_key_urlencoded = twitter_consumer_key.stringByAddingPercentEscapesForQueryValue()
+   static let twitter_consumer_secret_urlencoded = twitter_consumer_secret.stringByAddingPercentEscapesForQueryValue()
+   
+   static let twitter_token_request = twitter_consumer_key + ":" + twitter_consumer_secret
+   static let twitter_token_request_encoded = twitter_token_request.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+
+   
+   
+   // Base64 encode UTF 8 string
+   // fromRaw(0) is equivalent to objc 'base64EncodedStringWithOptions:0'
+   // Notice the unwrapping given the NSData! optional
+   // NSString! returned (optional)
 
    var window: UIWindow?
 
@@ -42,5 +58,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    }
 
 
+}
+
+extension String {
+   
+   /// Percent escape value to be added to a URL query value as specified in RFC 3986
+   ///
+   /// This percent-escapes all characters except the alphanumeric character set and "-", ".", "_", and "~".
+   ///
+   /// http://www.ietf.org/rfc/rfc3986.txt
+   ///
+   /// :returns: Return precent escaped string.
+   
+   func stringByAddingPercentEscapesForQueryValue() -> String? {
+      let characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
+      characterSet.addCharactersInString("-._~")
+      return stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+   }
 }
 

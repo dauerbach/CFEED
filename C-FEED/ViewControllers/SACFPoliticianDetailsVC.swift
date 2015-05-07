@@ -12,8 +12,21 @@ class SACFPoliticianDetailsVC: UIViewController {
 
    @IBOutlet weak var navItem: UINavigationItem!
    
+   @IBOutlet weak var tokenLBL: UILabel!
+   
    var politician : SACFPolitician?
    
+   @IBAction func requestTwitterToken(sender: AnyObject) {
+      
+      TwitterService.getBearerToken() { (token, error) in
+         if (!error) {
+            self.tokenLBL.text = token
+         } else {
+            self.tokenLBL.text = "ERROR"
+         }
+         println("BT: " + self.tokenLBL.text!)
+      }
+   }
    
     override func viewDidLoad() {
         super.viewDidLoad()

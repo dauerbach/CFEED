@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>baseURL</key>
+	<string>https://api.twitter.com/oauth2/token</string>
+	<key>bodyString</key>
+	<string>grant_type=client_credentials</string>
+	<key>followRedirect</key>
+	<true/>
+	<key>handleJSONPCallbacks</key>
+	<false/>
+	<key>headers</key>
+	<array>
+		<dict>
+			<key>header</key>
+			<string>Authorization</string>
+			<key>inUse</key>
+			<true/>
+			<key>value</key>
+			<string>Basic bUp4YnFvRktmY3JNcEV3em5sb1dSeHdiRTpyME1RbzBDRUk3alJSbjA4UkM5Q2duam55TXJ5d0dDQUcwQWIzRGNueTFSYlVHWElxag==</string>
+		</dict>
+		<dict>
+			<key>header</key>
+			<string>Authorization</string>
+			<key>inUse</key>
+			<false/>
+			<key>value</key>
+			<string>Bearer "AAAAAAAAAAAAAAAAAAAAABxLfgAAAAAAxNdc3oaRV6sU%2F9g99NoY70KDhNQ%3DseTevFOEXsQSVyIToqDCmqWVjW519AapyBFf3i4Eg7vCQZigob"</string>
+		</dict>
+		<dict>
+			<key>header</key>
+			<string>Content-Type</string>
+			<key>inUse</key>
+			<true/>
+			<key>value</key>
+			<string>application/x-www-form-urlencoded;charset=UTF-8</string>
+		</dict>
+	</array>
+	<key>httpMethod</key>
+	<string>POST</string>
+	<key>jsonpScript</key>
+	<string></string>
+	<key>paramBodyUIChoice</key>
+	<integer>0</integer>
+	<key>parameters</key>
+	<array>
+		<dict>
+			<key>inUse</key>
+			<false/>
+			<key>parameter</key>
+			<string>screename</string>
+			<key>value</key>
+			<string>dadsoup</string>
+		</dict>
+		<dict>
+			<key>inUse</key>
+			<false/>
+			<key>parameter</key>
+			<string>count</string>
+			<key>value</key>
+			<string>5</string>
+		</dict>
+	</array>
+	<key>parametersType</key>
+	<integer>0</integer>
+	<key>presentBeforeChallenge</key>
+	<false/>
+	<key>stringEncoding</key>
+	<integer>4</integer>
+	<key>usingHTTPBody</key>
+	<true/>
+</dict>
+</plist>

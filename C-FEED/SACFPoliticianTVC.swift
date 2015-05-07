@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PoliticianTVC: UITableViewCell {
+class SACFPoliticianTVC: UITableViewCell {
    
    @IBOutlet weak var partyLBL: UILabel!
    @IBOutlet weak var nameLBL: UILabel!

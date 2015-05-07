@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0C0ABE8324A716FB377F0800 /* Pods_C_FEED.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE63AF0120EA562222216B1C /* Pods_C_FEED.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5511C7311AF9BD9F00EA8E3C /* TwitterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C7301AF9BD9F00EA8E3C /* TwitterService.swift */; };
+		5511C7331AF9CE4E00EA8E3C /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C7321AF9CE4E00EA8E3C /* TwitterUser.swift */; };
+		5511C7351AF9CE5900EA8E3C /* TwitterTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5511C7341AF9CE5900EA8E3C /* TwitterTweet.swift */; };
 		552471491AF5B0E9008F1C24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552471481AF5B0E9008F1C24 /* AppDelegate.swift */; };
-		5524714B1AF5B0E9008F1C24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524714A1AF5B0E9008F1C24 /* ViewController.swift */; };
 		5524714E1AF5B0E9008F1C24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5524714C1AF5B0E9008F1C24 /* Main.storyboard */; };
 		552471501AF5B0E9008F1C24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5524714F1AF5B0E9008F1C24 /* Images.xcassets */; };
 		552471531AF5B0E9008F1C24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 552471511AF5B0E9008F1C24 /* LaunchScreen.xib */; };
@@ -20,7 +22,7 @@
 		55569FD11AF6C76E005BB21A /* SACFRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD01AF6C76E005BB21A /* SACFRequestManager.swift */; };
 		55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD21AF6C796005BB21A /* SACFPolitician.swift */; };
 		55569FD71AF6D179005BB21A /* SACFRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD61AF6D179005BB21A /* SACFRole.swift */; };
-		55569FD91AF6E98C005BB21A /* PoliticianTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */; };
+		55569FD91AF6E98C005BB21A /* SACFPoliticianTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55569FD81AF6E98C005BB21A /* SACFPoliticianTVC.swift */; };
 		557044681AF736F3002D4C1D /* SACFCongress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557044671AF736F3002D4C1D /* SACFCongress.swift */; };
 		5570446A1AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */; };
 		5570446C1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */; };
@@ -29,10 +31,12 @@
 
 /* Begin PBXFileReference section */
 		1D1405DD96428EE39028929F /* Pods-C-FEED.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C-FEED.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C-FEED/Pods-C-FEED.debug.xcconfig"; sourceTree = "<group>"; };
+		5511C7301AF9BD9F00EA8E3C /* TwitterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterService.swift; path = Services/TwitterService.swift; sourceTree = "<group>"; };
+		5511C7321AF9CE4E00EA8E3C /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TwitterUser.swift; path = Services/TwitterUser.swift; sourceTree = "<group>"; };
+		5511C7341AF9CE5900EA8E3C /* TwitterTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterTweet.swift; sourceTree = "<group>"; };
 		552471431AF5B0E9008F1C24 /* C-FEED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "C-FEED.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		552471471AF5B0E9008F1C24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		552471481AF5B0E9008F1C24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5524714A1AF5B0E9008F1C24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5524714D1AF5B0E9008F1C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5524714F1AF5B0E9008F1C24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		552471521AF5B0E9008F1C24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -43,7 +47,7 @@
 		55569FD01AF6C76E005BB21A /* SACFRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFRequestManager.swift; sourceTree = "<group>"; };
 		55569FD21AF6C796005BB21A /* SACFPolitician.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFPolitician.swift; sourceTree = "<group>"; };
 		55569FD61AF6D179005BB21A /* SACFRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFRole.swift; sourceTree = "<group>"; };
-		55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianTVC.swift; sourceTree = "<group>"; };
+		55569FD81AF6E98C005BB21A /* SACFPoliticianTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFPoliticianTVC.swift; sourceTree = "<group>"; };
 		557044671AF736F3002D4C1D /* SACFCongress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SACFCongress.swift; sourceTree = "<group>"; };
 		557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SACFPoliticianDetailsNC.swift; path = ViewControllers/SACFPoliticianDetailsNC.swift; sourceTree = "<group>"; };
 		5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SACFPoliticianDetailsVC.swift; path = ViewControllers/SACFPoliticianDetailsVC.swift; sourceTree = "<group>"; };
@@ -72,6 +76,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5511C72F1AF9BD4E00EA8E3C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5511C7301AF9BD9F00EA8E3C /* TwitterService.swift */,
+				5511C7321AF9CE4E00EA8E3C /* TwitterUser.swift */,
+				5511C7341AF9CE5900EA8E3C /* TwitterTweet.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		5524713A1AF5B0E9008F1C24 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +107,7 @@
 		552471451AF5B0E9008F1C24 /* C-FEED */ = {
 			isa = PBXGroup;
 			children = (
+				5511C72F1AF9BD4E00EA8E3C /* Services */,
 				552471481AF5B0E9008F1C24 /* AppDelegate.swift */,
 				5524714C1AF5B0E9008F1C24 /* Main.storyboard */,
 				55569FD51AF6C7A9005BB21A /* Utilities */,
@@ -116,11 +131,10 @@
 		55569FC91AF6C319005BB21A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5524714A1AF5B0E9008F1C24 /* ViewController.swift */,
 				55569FCA1AF6C351005BB21A /* SACFMainTabBarVC.swift */,
 				55569FCC1AF6C36D005BB21A /* SACFSearchVC.swift */,
 				55569FC71AF6C30E005BB21A /* SACFFavoritesVC.swift */,
-				55569FD81AF6E98C005BB21A /* PoliticianTVC.swift */,
+				55569FD81AF6E98C005BB21A /* SACFPoliticianTVC.swift */,
 				557044691AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift */,
 				5570446B1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift */,
 			);
@@ -279,17 +293,19 @@
 			files = (
 				5570446A1AF752C6002D4C1D /* SACFPoliticianDetailsNC.swift in Sources */,
 				5570446C1AF752FF002D4C1D /* SACFPoliticianDetailsVC.swift in Sources */,
+				5511C7311AF9BD9F00EA8E3C /* TwitterService.swift in Sources */,
+				5511C7351AF9CE5900EA8E3C /* TwitterTweet.swift in Sources */,
 				55569FD31AF6C796005BB21A /* SACFPolitician.swift in Sources */,
 				55569FCD1AF6C36D005BB21A /* SACFSearchVC.swift in Sources */,
 				55EBE1DC1AF8618C00D33B4B /* SACFCongressManager.swift in Sources */,
 				55569FC81AF6C30E005BB21A /* SACFFavoritesVC.swift in Sources */,
-				55569FD91AF6E98C005BB21A /* PoliticianTVC.swift in Sources */,
+				55569FD91AF6E98C005BB21A /* SACFPoliticianTVC.swift in Sources */,
 				55569FD11AF6C76E005BB21A /* SACFRequestManager.swift in Sources */,
-				5524714B1AF5B0E9008F1C24 /* ViewController.swift in Sources */,
 				55569FD71AF6D179005BB21A /* SACFRole.swift in Sources */,
 				55569FCF1AF6C757005BB21A /* SACFUserDataPersistence.swift in Sources */,
 				552471491AF5B0E9008F1C24 /* AppDelegate.swift in Sources */,
 				55569FCB1AF6C351005BB21A /* SACFMainTabBarVC.swift in Sources */,
+				5511C7331AF9CE4E00EA8E3C /* TwitterUser.swift in Sources */,
 				557044681AF736F3002D4C1D /* SACFCongress.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

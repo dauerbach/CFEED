@@ -37,6 +37,10 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       // Dispose of any resources that can be recreated.
    }
    
+   
+   
+   
+   
    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
       
       if (tableView == politicianList) {
@@ -95,7 +99,7 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
       
       if (tableView == politicianList) {
          
-         if let pcell = (tableView.dequeueReusableCellWithIdentifier("rid_politician") as? PoliticianTVC) {
+         if let pcell = (tableView.dequeueReusableCellWithIdentifier("rid_politician") as? SACFPoliticianTVC) {
             
             pcell.nameLBL.text      = SACFCongressManager.sharedInstance.membersGrouped?[indexPath.section]![indexPath.row].name!
             pcell.partyLBL.text      = SACFCongressManager.sharedInstance.membersGrouped?[indexPath.section]![indexPath.row].curRole?.party!
