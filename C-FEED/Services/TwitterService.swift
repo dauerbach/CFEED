@@ -13,6 +13,9 @@ import Alamofire
 
 class TwitterService {
    
+   
+   // Twitter API constants
+   // TODO: Remove unnecessary constants
    static let twitter_auth_url = "https://api.twitter.com/oauth2/token"
    static let twitter_user_timeline_url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
    
@@ -28,6 +31,7 @@ class TwitterService {
    static var twitter_bearer_token = ""
    static var twitter_timeline_request : NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: twitter_user_timeline_url)!)
    
+   
    class func initialize() {
       
       // request bearer token from oauth endpoint
@@ -38,23 +42,16 @@ class TwitterService {
       }
       
       // construct mutable URLRequest to be used for twitter data queries
-//      TwitterService.twitter_timeline_request = NSMutableURLRequest(URL: NSURL(string: twitter_user_timeline_url)!)
+      TwitterService.twitter_timeline_request = NSMutableURLRequest(URL: NSURL(string: twitter_user_timeline_url)!)
       TwitterService.twitter_timeline_request.HTTPMethod = "GET"
       TwitterService.twitter_timeline_request.setValue("Bearer " + twitter_token_request_encoded, forHTTPHeaderField: "Authorization")
-      
-      let parameters = ["foo": "bar"]
-      let encoding = Alamofire.ParameterEncoding.URL
-      var finalRequest : NSURLRequest
-      (finalRequest, _) = encoding.encode(TwitterService.twitter_timeline_request, parameters: parameters)
-      
-      Alamofire.req
-      
-   
+
+      // TODO: Set up to accept variable params for queries
    }
    
-   class func getTimeline(users : String, completion: (token : String, error : Bool) -> Void) {
+   class func getTimeline(user : String, completion: (token : String, error : Bool) -> Void) {
       
-      
+      // TODO: implement getTimeline
    
    }
    
@@ -62,27 +59,31 @@ class TwitterService {
       
       var token : String = ""
       
-      let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: twitter_auth_url)!)
+      // create mutable request so we can customize
+      let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: TwitterService.twitter_auth_url)!)
 
+      // per Twitter API docs for obtaining Bearer token from oauth2
       mutableURLRequest.HTTPMethod = "POST"
-
-      mutableURLRequest.setValue("Basic " + twitter_token_request_encoded, forHTTPHeaderField: "Authorization")
+      mutableURLRequest.setValue("Basic " + TwitterService.twitter_token_request_encoded, forHTTPHeaderField: "Authorization")
       mutableURLRequest.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-
       mutableURLRequest.HTTPBody = "grant_type=client_credentials".dataUsingEncoding(NSUTF8StringEncoding)
       
       Alamofire.request(mutableURLRequest).responseJSON(options: .AllowFragments) { (request, response, jsondata, error) -> Void in
 
-         println("RESPONSE: \(jsondata)")
+         // create nice dictionary from response
          let json = JSON(jsondata!)
          
+         // if returned json has [ token_type" : "bearer" ]
          if (json["token_type"].stringValue == "bearer") {
             
             token = json["access_token"].stringValue
+            
+            // pass back to caller
             completion(token: token, error: false)
          
          } else {
-            completion(token: "Token Obtained", error: true)
+            // set error flag and call completion
+            completion(token: "Token NOT Obtained", error: true)
          }
       }
    }
