@@ -8,7 +8,7 @@ After using _AFNetworking_ and _Mantle_ in previous Obj-C projects, I wanted to 
 Also discovered that _Dollar_ does a great job of adding some FP-like tools to the Swift environment.
 
 Initially CFEED will display (readonly) Twitter timelines for a user selected member of Congress.
----
+
 #### Tests use of the following:
 *   Public Webservices:
      *   [Govtrack.us public API](https://www.govtrack.us/developers/api)
@@ -21,4 +21,14 @@ Initially CFEED will display (readonly) Twitter timelines for a user selected me
      *   [Dollar](https://github.com/ankurp/Dollar.swift)
 *   [Cocoapods](https://cocoapods.org/) (v 0.36.4 for swift projects)
 
+#### TODOs
+*   Complete Twitter Timeline Queries
+*   Save settings for NSUserDefaults
+*   Implement Favorite List
+*   [Youtube Feeds](https://developers.google.com/youtube/v3/getting-started)
 
+#### Possibly Doing
+*   Obtain Financing data from [OpenSecrets.org](http://www.opensecrets.org/resources/create/apis.php)
+*
+#### Not Doing
+*   Swift Testing (Looking at [Quick/Nimble](https://github.com/Quick/Quick) (rspec-ish) for future projects)
