@@ -29,6 +29,6 @@ Initially CFEED will display (readonly) Twitter timelines for a user selected me
 
 #### Possibly Doing
 *   Obtain Financing data from [OpenSecrets.org](http://www.opensecrets.org/resources/create/apis.php)
-*
+
 #### Not Doing
 *   Swift Testing (Looking at [Quick/Nimble](https://github.com/Quick/Quick) (rspec-ish) for future projects)
