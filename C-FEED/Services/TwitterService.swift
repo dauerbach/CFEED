@@ -19,8 +19,8 @@ class TwitterService {
    static let twitter_auth_url = "https://api.twitter.com/oauth2/token"
    static let twitter_user_timeline_url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
    
-   static let twitter_consumer_key = "mJxbqoFKfcrMpEwznloWRxwbE"
-   static let twitter_consumer_secret = "r0MQo0CEI7jRRn08RC9CgnjnyMrywGCAG0Ab3Dcny1RbUGXIqj"
+   static let twitter_consumer_key = "<KEY GOES HERE>"
+   static let twitter_consumer_secret = "<SECRET GOES HERE>"
    
    static let twitter_consumer_key_urlencoded = twitter_consumer_key.stringByAddingPercentEscapesForQueryValue()
    static let twitter_consumer_secret_urlencoded = twitter_consumer_secret.stringByAddingPercentEscapesForQueryValue()
