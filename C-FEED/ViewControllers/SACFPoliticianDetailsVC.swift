@@ -18,7 +18,7 @@ class SACFPoliticianDetailsVC: UIViewController {
    
    @IBAction func requestTwitterToken(sender: AnyObject) {
       
-      TwitterService.getBearerToken() { (token, error) in
+      TwitterService.sharedInstance().getBearerToken() { (token, error) in
          if (!error) {
             self.tokenLBL.text = token
          } else {
