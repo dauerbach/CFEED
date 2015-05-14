@@ -12,7 +12,7 @@ import ObjectMapper
 import SwiftyJSON
 
 
-class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class SACFCongressVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
    
    @IBOutlet weak var politicianList: UITableView!
    
@@ -44,10 +44,13 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
       
       if (tableView == politicianList) {
-//         return 1
+         
          return count(SACFCongressManager.sharedInstance.membersGrouped!)
+         
       } else {
+         
          return 0
+         
       }
       
    }
@@ -80,11 +83,20 @@ class SACFSearchVC: UIViewController, UITableViewDataSource, UITableViewDelegate
          
          SACFCongressManager.sharedInstance.loadPoliticianWithCompletion(politician: pol, completion: { (success) in
             
-            // instantiate "details" vc and push into nav stack
-            if let destVC = self.sb?.instantiateViewControllerWithIdentifier("vc_politicianDetails") as? SACFPoliticianDetailsVC {
+            if (success) {
+               // got politician details...
+            
+               // instantiate "details" vc and push into nav stack
+               if let destVC = self.sb?.instantiateViewControllerWithIdentifier("vc_politicianDetails") as? SACFPoliticianDetailsVC {
+                  
+                  self.navigationController?.pushViewController(destVC, animated: true)
+                  
+               }
+            } else {
                
-               self.navigationController?.pushViewController(destVC, animated: true)
-               
+               // show error alert
+               let alert = UIAlertController(title: "ERROR", message: "Error retrieving GovTrack details for \(pol.fullName())", preferredStyle: UIAlertControllerStyle.Alert)
+               self.presentViewController(alert, animated: true, completion: nil)
             }
 
          })

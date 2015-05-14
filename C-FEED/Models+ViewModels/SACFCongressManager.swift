@@ -42,9 +42,12 @@ class SACFCongressManager  {
       
    }
    
-   func loadCongressWithCompletion(completion: (Bool) -> Void) {
+   func loadCongressWithCompletion(completion: (success: Bool) -> Void) {
+      // make async call to Govtracker to retrieve list of current congresspeople
       
+      // only make call if mebers list not yet populated
       if let cnt = members?.count where (cnt == 0) {
+         
          
          SACFRequestManager.requestCurrentCongress { (request, response, jsonString, error) in
             
@@ -70,25 +73,26 @@ class SACFCongressManager  {
                }
                self.congress?.sortCongress(.CurStateDistName)
                
-               completion(true)
+               completion(success: true)
                
             } else {
                
-               completion(false)
+               completion(success: false)
                
             }
          }
          
       } else {
          
-         completion(true)
+         // we already have a members of congress
+         completion(success: true)
          
       }
       
    }
    
    
-   func loadPoliticianWithCompletion(#politician : SACFPolitician, completion: (Bool) -> Void) {
+   func loadPoliticianWithCompletion(#politician : SACFPolitician, completion: (success: Bool) -> Void) {
       
       if !politician.detailedRecord {
          
@@ -103,20 +107,19 @@ class SACFCongressManager  {
                self.congress?.updatePolitician(polDetailed)
                
                self.selectedPolitician = polDetailed
-               completion(true)
+               completion(success: true)
                
             } else {
                
-               completion(false)
+               completion(success: false)
                
             }
-            
          }
 
       } else {
          
          self.selectedPolitician = politician
-         completion(true)
+         completion(success: true)
          
       }
 

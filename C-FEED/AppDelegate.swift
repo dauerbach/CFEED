@@ -1,4 +1,4 @@
-//
+ //
 //  AppDelegate.swift
 //  C-FEED
 //
@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       // Override point for customization after application launch.
+      
+      // initialize the Fabric API structure
+      Twitter.sharedInstance().startWithConsumerKey("UhloQwuJ87ZdyBhQxKrdhSZai", consumerSecret: "pzqkvjfZvIPgh6UiF38uEp7ySlkYQwq0Dn7nitycowhnXoOynj")
+
+      TwitterService.sharedInstance().setKeys(consumer_key: "UhloQwuJ87ZdyBhQxKrdhSZai", consumer_secret: "pzqkvjfZvIPgh6UiF38uEp7ySlkYQwq0Dn7nitycowhnXoOynj")
+      
+      Fabric.with([Twitter()])
+      
+      // Set all future tweet views to use dark theme using UIAppearanceProxy
+      TWTRTweetView.appearance().theme = .Dark
+
       return true
+
    }
 
    func applicationWillResignActive(application: UIApplication) {

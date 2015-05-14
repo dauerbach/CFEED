@@ -17,86 +17,145 @@ class TwitterService {
    
    private let twitter_auth_url = "https://api.twitter.com/oauth2/token"
    private let twitter_user_timeline_url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
-   
-   private let twitter_consumer_key : String = "mJxbqoFKfcrMpEwznloWRxwbE"
-   private let twitter_consumer_secret : String = "r0MQo0CEI7jRRn08RC9CgnjnyMrywGCAG0Ab3Dcny1RbUGXIqj"
 
-   private var twitter_token_request : String?
-   private var twitter_token_request_encoded : String?
-   
-   private var twitter_bearer_token : String?
+   private var twitter_bearer_token : String? {
+      didSet {
+         hasBearerToken = (twitter_bearer_token != "")
+      }
+   }
+   private var hasBearerToken : Bool = false
    
 
    
    class func sharedInstance() -> TwitterService {
       
-      return (instance ?? TwitterService())
+      // return instance or create it
+      instance = (instance ?? TwitterService())
+      return instance!
       
    }
    
    private init() {
       
-      self.twitter_token_request         = self.twitter_consumer_key.stringByAddingPercentEscapesForQueryValue()! + ":" +
-                                           self.twitter_consumer_secret.stringByAddingPercentEscapesForQueryValue()!
+      // make init private to prevent multi-instantiation of Service
       
-      self.twitter_token_request_encoded = self.twitter_token_request!.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-
    }
-
    
-   func MakeTimelineRequest(#screen_name : String) -> NSMutableURLRequest {
+   
+   func setKeys(#consumer_key : String, consumer_secret : String) {
       
-      // construct mutable URLRequest to be used for twitter data queries
-      var request = NSMutableURLRequest(URL: NSURL(string: self.twitter_user_timeline_url)!)
+      if (consumer_key != "") && (consumer_secret != "") {
+         
+         getBearerToken(key: consumer_key, secret: consumer_secret, completion: { (token : String, error : Bool) -> Void in
+            
+            if (!error) {
+               
+               // save Bearer token for future use...
+               self.twitter_bearer_token = token //"AAAAAAAAAAAAAAAAAAAAABxLfgAAAAAAxNdc3oaRV6sU%2F9g99NoY70KDhNQ%3DseTevFOEXsQSVyIToqDCmqWVjW519AapyBFf3i4Eg7vCQZigob"
+               println("Got token: \(token)")
+               
+            } else {
+               
+               println("error getting Twitter API Bearer token")
+               self.twitter_bearer_token = ""
+               
+            }
+            
+         })
+         
+      }
       
-      request.HTTPMethod = "GET"
-      request.setValue("Bearer " + self.twitter_token_request_encoded!, forHTTPHeaderField: "Authorization")
+   }
+   func getTimelineForScreenname(#user : String, completion: (tweetData : [AnyObject], error : Bool) -> Void) {
+      
+      if let request = makeTimelineRequest(screen_name: user) {
+
+         Alamofire.request(request).responseJSON() {
+               
+            (_, _, jsondata, error) -> Void in
+            
+            if let err = error {
+               
+               completion(tweetData: [], error: true)
+               
+            } else if let json : [AnyObject] = jsondata as? [AnyObject] {
+
+               println(json[0])
+               completion(tweetData: json, error: false)
+               
+            }
+         }
+      }
+   
+   }
+   
+   private func makeTimelineRequest(#screen_name : String) -> NSMutableURLRequest? {
+      
+      var request : NSMutableURLRequest? = nil
+      
+      if self.hasBearerToken {
+         
+         // construct mutable URLRequest to be used for twitter data queries
+         request = NSMutableURLRequest(URL: NSURL(string: "\(self.twitter_user_timeline_url)?screen_name=\(screen_name)&count=5")!)
+         if let req = request {
+            req.HTTPMethod = "GET"
+            req.setValue("Bearer " + self.twitter_bearer_token!, forHTTPHeaderField: "Authorization")
+            
+            println("Request: \(self.twitter_bearer_token!)")
+         }
+         
+      }
       
       return request
    }
    
-   func getTimeline(user : String, completion: (token : String, error : Bool) -> Void) {
+   private func getBearerToken(#key: String, secret : String, completion: (token : String, error : Bool) -> Void) {
+   // make async call to get twitter bearer token
       
-      var request = MakeTimelineRequest(screen_name: "dadsoup")
-      Alamofire.request(request).responseJSON(options: .AllowFragments) { (_, _, jsondata, error) -> Void in
+      
+      // make sure API keys have been set
+      if (key != "") && (secret != "") {
          
-         println(JSON(jsondata!))
+         let twitter_token_request  = key.stringByAddingPercentEscapesForQueryValue()! + ":" +
+                                       secret.stringByAddingPercentEscapesForQueryValue()!
          
-      }
-   
-   }
-   
-   func getBearerToken(completion: (token : String, error : Bool) -> Void) {
-      
-      var token : String = ""
-      
-      // create mutable request so we can customize
-      let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: self.twitter_auth_url)!)
+         let twitter_token_request_encoded = twitter_token_request.dataUsingEncoding(NSUTF8StringEncoding)!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+         
+         // create mutable request so we can customize
+         let mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: self.twitter_auth_url)!)
 
-      // per Twitter API docs for obtaining Bearer token from oauth2
-      mutableURLRequest.HTTPMethod = "POST"
-      mutableURLRequest.setValue("Basic " + self.twitter_token_request_encoded!, forHTTPHeaderField: "Authorization")
-      mutableURLRequest.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-      mutableURLRequest.HTTPBody = "grant_type=client_credentials".dataUsingEncoding(NSUTF8StringEncoding)
-      
-      Alamofire.request(mutableURLRequest).responseJSON(options: .AllowFragments) { (request, response, jsondata, error) -> Void in
+         // per Twitter API docs for obtaining Bearer token from oauth2
+         mutableURLRequest.HTTPMethod = "POST"
+         mutableURLRequest.setValue("Basic " + twitter_token_request_encoded, forHTTPHeaderField: "Authorization")
+         mutableURLRequest.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
+         mutableURLRequest.HTTPBody = "grant_type=client_credentials".dataUsingEncoding(NSUTF8StringEncoding)
+         
+         println("Basic " + twitter_token_request_encoded)
+         
+         // make server call
+         Alamofire.request(mutableURLRequest).responseJSON(options: .AllowFragments) { (request, response, jsondata, error) -> Void in
 
-         // create nice dictionary from response
-         let json = JSON(jsondata!)
-         
-         // if returned json has [ token_type" : "bearer" ]
-         if (json["token_type"].stringValue == "bearer") {
+            // create nice dictionary from response
+            let json = JSON(jsondata!)
             
-            token = json["access_token"].stringValue
+            // if returned json has [ token_type" : "bearer" ]
+            if (json["token_type"].stringValue == "bearer") {
+               
+               // if successful, get token from response
+               let token = json["access_token"].stringValue
+               
+               // pass token back to caller
+               completion(token: token, error: false)
             
-            // pass back to caller
-            completion(token: token, error: false)
-         
-         } else {
-            // set error flag and call completion
-            completion(token: "Token NOT Obtained", error: true)
+            } else {
+               // set error flag and call completion
+               completion(token: "Token NOT Obtained", error: true)
+            }
          }
+      } else {
+         completion(token: "Twitter API Keys not set", error: true)
       }
+      
    }
    
 }

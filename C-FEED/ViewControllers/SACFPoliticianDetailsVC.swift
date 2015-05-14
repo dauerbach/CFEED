@@ -8,25 +8,14 @@
 
 import UIKit
 
-class SACFPoliticianDetailsVC: UIViewController {
+class SACFPoliticianDetailsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
    @IBOutlet weak var navItem: UINavigationItem!
    
    @IBOutlet weak var tokenLBL: UILabel!
+   @IBOutlet weak var menuTV: UITableView!
    
    var politician : SACFPolitician?
-   
-   @IBAction func requestTwitterToken(sender: AnyObject) {
-      
-      TwitterService.sharedInstance().getBearerToken() { (token, error) in
-         if (!error) {
-            self.tokenLBL.text = token
-         } else {
-            self.tokenLBL.text = "ERROR"
-         }
-         println("BT: " + self.tokenLBL.text!)
-      }
-   }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +26,42 @@ class SACFPoliticianDetailsVC: UIViewController {
       
       navItem.title = self.politician?.lastname!
       
+      menuTV.dataSource = self
+      menuTV.delegate = self
+      menuTV.reloadData()
+      
+      
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+   
+   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+      return 1
+   }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return 1
+   }
+   
+   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+      
+      let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("rid_sn") as! UITableViewCell
+         
+//         dequeueReusableCellWithIdentifier("rid_sn") as! UITableViewCell
+      
+      cell.textLabel?.text = "Twitter"
+      
+      return cell
+   }
+   
+   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+      println("did select")
+      
+      self.performSegueWithIdentifier("seg_timeline", sender: self)
+      
+   }
+   
 }

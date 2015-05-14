@@ -14,7 +14,7 @@
 			<key>header</key>
 			<string>Authorization</string>
 			<key>inUse</key>
-			<true/>
+			<false/>
 			<key>value</key>
 			<string>Bearer AAAAAAAAAAAAAAAAAAAAABxLfgAAAAAAxNdc3oaRV6sU%2F9g99NoY70KDhNQ%3DseTevFOEXsQSVyIToqDCmqWVjW519AapyBFf3i4Eg7vCQZigob</string>
 		</dict>
@@ -22,9 +22,25 @@
 			<key>header</key>
 			<string>Accept-Encoding</string>
 			<key>inUse</key>
-			<true/>
+			<false/>
 			<key>value</key>
 			<string>gzip</string>
+		</dict>
+		<dict>
+			<key>header</key>
+			<string>header</string>
+			<key>inUse</key>
+			<true/>
+			<key>value</key>
+			<string>Bearer AAAAAAAAAAAAAAAAAAAAAHKmfgAAAAAA99cmUp658VhaQUHTdYyLfXE5obU%3DwkPbbLpfY8I9d1yXCryDWjPWa2fKikiSV1ofbyfnWTq4fUaHRo</string>
+		</dict>
+		<dict>
+			<key>header</key>
+			<string>header</string>
+			<key>inUse</key>
+			<false/>
+			<key>value</key>
+			<string>value</string>
 		</dict>
 	</array>
 	<key>httpMethod</key>
